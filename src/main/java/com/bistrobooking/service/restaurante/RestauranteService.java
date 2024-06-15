@@ -1,4 +1,7 @@
 package com.bistrobooking.service.restaurante;
 
-public class RestauranteService {
+import com.bistrobooking.dto.restaurante.RestauranteSaveDTO;
+import com.bistrobooking.service.BaseService;
+
+public interface RestauranteService extends BaseService<RestauranteSaveDTO> {
 }

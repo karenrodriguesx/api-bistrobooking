@@ -1,4 +1,7 @@
 package com.bistrobooking.service.cliente;
 
-public class ClienteService {
+import com.bistrobooking.dto.cliente.ClienteDTO;
+import com.bistrobooking.service.BaseService;
+
+public interface ClienteService extends BaseService<ClienteDTO> {
 }

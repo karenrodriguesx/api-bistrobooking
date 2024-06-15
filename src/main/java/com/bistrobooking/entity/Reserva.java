@@ -19,7 +19,7 @@ public class Reserva {
     private Cliente cliente;
 
     @Column(name = "dth_reserva")
-    private LocalDateTime dataHora;
+    private LocalDateTime dataHoraReserva;
 
     @Column(name = "qtd_pessoas")
     private Integer quantidadePessoas;
@@ -27,11 +27,11 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Long id, Restaurante restaurante, Cliente cliente, LocalDateTime dataHora, Integer quantidadePessoas) {
+    public Reserva(Long id, Restaurante restaurante, Cliente cliente, LocalDateTime dataHoraReserva, Integer quantidadePessoas) {
         this.id = id;
         this.restaurante = restaurante;
         this.cliente = cliente;
-        this.dataHora = dataHora;
+        this.dataHoraReserva = dataHoraReserva;
         this.quantidadePessoas = quantidadePessoas;
     }
 
@@ -59,12 +59,12 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDateTime getDataHoraReserva() {
+        return dataHoraReserva;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public void setDataHoraReserva(LocalDateTime dataHoraReserva) {
+        this.dataHoraReserva = dataHoraReserva;
     }
 
     public Integer getQuantidadePessoas() {
