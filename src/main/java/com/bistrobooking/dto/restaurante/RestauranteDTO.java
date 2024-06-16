@@ -1,45 +1,36 @@
-package com.bistrobooking.entity;
+package com.bistrobooking.dto.restaurante;
 
-import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
-
-@Entity
-public class Restaurante {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RestauranteDTO {
     private Long id;
 
-    @Column
     private String nome;
 
-    @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_endereco")
-    private Endereco endereco;
+    private EnderecoDTO endereco;
 
-    @Column
     private String telefone;
 
-    @Column
     private String tipoCulinaria;
 
-    @Column
-    private LocalDateTime excluido;
-
-    public Restaurante() {
+    public RestauranteDTO() {
     }
 
-    public Restaurante(Long id, String nome, String descricao, Endereco endereco, String telefone, String tipoCulinaria, LocalDateTime excluido) {
+    public RestauranteDTO(Long id, String nome, String descricao, EnderecoDTO endereco, String telefone, String tipoCulinaria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.endereco = endereco;
         this.telefone = telefone;
         this.tipoCulinaria = tipoCulinaria;
-        this.excluido = excluido;
+    }
+
+    public RestauranteDTO(Long id, String nome, String descricao, String telefone, String tipoCulinaria) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.telefone = telefone;
+        this.tipoCulinaria = tipoCulinaria;
     }
 
     public Long getId() {
@@ -66,11 +57,11 @@ public class Restaurante {
         this.descricao = descricao;
     }
 
-    public Endereco getEndereco() {
+    public EnderecoDTO getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(EnderecoDTO endereco) {
         this.endereco = endereco;
     }
 
@@ -88,13 +79,5 @@ public class Restaurante {
 
     public void setTipoCulinaria(String tipoCulinaria) {
         this.tipoCulinaria = tipoCulinaria;
-    }
-
-    public LocalDateTime getExcluido() {
-        return excluido;
-    }
-
-    public void setExcluido(LocalDateTime excluido) {
-        this.excluido = excluido;
     }
 }

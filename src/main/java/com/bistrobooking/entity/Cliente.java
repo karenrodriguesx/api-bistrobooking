@@ -2,6 +2,8 @@ package com.bistrobooking.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Cliente {
     @Id
@@ -17,14 +19,18 @@ public class Cliente {
     @Column
     private String telefone;
 
+    @Column
+    private LocalDateTime excluido;
+
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email, String telefone) {
+    public Cliente(Long id, String nome, String email, String telefone, LocalDateTime excluido) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.excluido = excluido;
     }
 
     public Long getId() {
@@ -57,5 +63,13 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public LocalDateTime getExcluido() {
+        return excluido;
+    }
+
+    public void setExcluido(LocalDateTime excluido) {
+        this.excluido = excluido;
     }
 }

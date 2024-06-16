@@ -24,15 +24,19 @@ public class Reserva {
     @Column(name = "qtd_pessoas")
     private Integer quantidadePessoas;
 
+    @Column
+    private LocalDateTime excluido;
+
     public Reserva() {
     }
 
-    public Reserva(Long id, Restaurante restaurante, Cliente cliente, LocalDateTime dataHoraReserva, Integer quantidadePessoas) {
+    public Reserva(Long id, Restaurante restaurante, Cliente cliente, LocalDateTime dataHoraReserva, Integer quantidadePessoas, LocalDateTime excluido) {
         this.id = id;
         this.restaurante = restaurante;
         this.cliente = cliente;
         this.dataHoraReserva = dataHoraReserva;
         this.quantidadePessoas = quantidadePessoas;
+        this.excluido = excluido;
     }
 
     public Long getId() {
@@ -73,5 +77,13 @@ public class Reserva {
 
     public void setQuantidadePessoas(Integer quantidadePessoas) {
         this.quantidadePessoas = quantidadePessoas;
+    }
+
+    public LocalDateTime getExcluido() {
+        return excluido;
+    }
+
+    public void setExcluido(LocalDateTime excluido) {
+        this.excluido = excluido;
     }
 }

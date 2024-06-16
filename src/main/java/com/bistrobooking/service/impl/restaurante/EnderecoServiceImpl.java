@@ -1,33 +1,68 @@
 package com.bistrobooking.service.impl.restaurante;
 
 import com.bistrobooking.dto.restaurante.EnderecoDTO;
-import com.bistrobooking.service.restaurante.EnderecoService;
+import com.bistrobooking.entity.Endereco;
+import com.bistrobooking.repository.restaurante.EnderecoRepository;
+import com.bistrobooking.service.base.restaurante.EnderecoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class EnderecoServiceImpl implements EnderecoService {
+
+    private final EnderecoRepository repository;
+
+    public EnderecoServiceImpl(EnderecoRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
-    public EnderecoDTO buscarPorId(Long id) {
-        return null;
+    public Optional<EnderecoDTO> buscarPorId(Long id) {
+        return Optional.ofNullable(repository.buscarPorId(id).orElseThrow(
+                () -> new IllegalArgumentException("Endereço não encontrado!")));
     }
 
     @Override
     public Page<EnderecoDTO> listar(Pageable pageable) {
-        return null;
+        return repository.listar(pageable);
     }
 
     @Override
     public EnderecoDTO salvar(EnderecoDTO form) {
-        return null;
+        Endereco endereco = new Endereco();
+        endereco.setCep(form.getCep());
+        endereco.setLogradouro(form.getLogradouro());
+        endereco.setComplemento(form.getComplemento());
+        endereco.setBairro(form.getBairro());
+        endereco.setLocalidade(form.getLocalidade());
+        endereco.setUf(form.getUf());
+
+        repository.save(endereco);
+
+        return form;
     }
 
     @Override
     public EnderecoDTO atualizar(Long id, EnderecoDTO form) {
-        return null;
+        Endereco endereco = new Endereco();
+        endereco.setId(id);
+        endereco.setCep(form.getCep());
+        endereco.setLogradouro(form.getLogradouro());
+        endereco.setComplemento(form.getComplemento());
+        endereco.setBairro(form.getBairro());
+        endereco.setLocalidade(form.getLocalidade());
+        endereco.setUf(form.getUf());
+
+        repository.save(endereco);
+
+        return form;
     }
 
     @Override
     public void excluir(Long id) {
-
+        repository.deleteById(id);
     }
 }
