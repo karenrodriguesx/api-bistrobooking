@@ -6,10 +6,8 @@ import com.bistrobooking.dto.reserva.ReservaListDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
-
 public interface ReservaService {
-    Optional<ReservaFetchDTO> buscarPorId(Long id);
+    ReservaFetchDTO buscarPorId(Long id);
 
     Page<ReservaListDTO> listar(Pageable pageable);
 

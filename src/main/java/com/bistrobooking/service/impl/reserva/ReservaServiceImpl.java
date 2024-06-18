@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
@@ -34,7 +33,7 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public Optional<ReservaFetchDTO> buscarPorId(Long id) {
+    public ReservaFetchDTO buscarPorId(Long id) {
         ReservaFetchDTO reservaFetch = new ReservaFetchDTO();
         ReservaSmallDTO reserva = repository.buscarPorId(id).orElseThrow(
                 () -> new IllegalArgumentException("Reserva não encontrada!"));
@@ -48,7 +47,7 @@ public class ReservaServiceImpl implements ReservaService {
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado!"));
         reservaFetch.setCliente(cliente);
 
-        return Optional.of(reservaFetch);
+        return reservaFetch;
     }
 
     @Override
@@ -62,11 +61,11 @@ public class ReservaServiceImpl implements ReservaService {
         reserva.setDataHoraReserva(form.getDataHoraReserva());
         reserva.setQuantidadePessoas(form.getQuantidadePessoas());
 
-        Restaurante restaurante = restauranteRepository.findById(form.getRestauranteId())
+        Restaurante restaurante = restauranteRepository.findByNome(form.getNomeRestaurante())
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado!"));
         reserva.setRestaurante(restaurante);
 
-        Cliente cliente = clienteRepository.findById(form.getClienteId())
+        Cliente cliente = clienteRepository.findByEmail(form.getEmailCliente())
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado!"));
         reserva.setCliente(cliente);
 

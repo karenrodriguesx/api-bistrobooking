@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class RestauranteServiceImpl implements RestauranteService {
@@ -28,7 +27,7 @@ public class RestauranteServiceImpl implements RestauranteService {
     }
 
     @Override
-    public Optional<RestauranteDTO> buscarPorId(Long id) {
+    public RestauranteDTO buscarPorId(Long id) {
         RestauranteDTO restaurante = repository.buscarPorId(id).orElseThrow(
                 () -> new IllegalArgumentException("Restaurante não encontrado!"));
 
@@ -37,7 +36,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 
         restaurante.setEndereco(endereco);
 
-        return Optional.of(restaurante);
+        return restaurante;
     }
 
     @Override

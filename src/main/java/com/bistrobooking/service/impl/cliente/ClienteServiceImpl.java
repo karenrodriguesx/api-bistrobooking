@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -20,9 +19,9 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Optional<ClienteDTO> buscarPorId(Long id) {
-        return Optional.of(repository.buscarPorId(id).orElseThrow(() ->
-                new IllegalArgumentException("Cliente não encontrado!")));
+    public ClienteDTO buscarPorId(Long id) {
+        return repository.buscarPorId(id).orElseThrow(() ->
+                new IllegalArgumentException("Cliente não encontrado!"));
     }
 
     @Override

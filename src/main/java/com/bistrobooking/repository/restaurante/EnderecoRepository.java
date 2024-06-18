@@ -50,7 +50,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
                 e.localidade,
                 e.uf
            ) FROM Endereco as e
-           LEFT JOIN Restaurante as r ON e.id = r.endereco.id
+           LEFT JOIN Restaurante as r ON r.endereco.id = e.id
            WHERE r.id = :idRestaurante
     """)
     Optional<EnderecoDTO> buscarPorIdRestaurante(Long idRestaurante);

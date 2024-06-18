@@ -13,7 +13,7 @@ public class Cliente {
     @Column
     private String nome;
 
-    @Column
+    @Column (unique = true)
     private String email;
 
     @Column

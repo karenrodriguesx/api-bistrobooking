@@ -47,4 +47,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
            AND r.id = :idReserva
     """)
     Optional<ClienteDTO> buscarPorIdReserva(Long idReserva);
+
+    Optional<Cliente> findByEmail(String email);
 }

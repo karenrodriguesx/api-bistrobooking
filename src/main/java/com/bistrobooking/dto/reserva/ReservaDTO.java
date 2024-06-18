@@ -1,14 +1,17 @@
 package com.bistrobooking.dto.reserva;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class ReservaDTO {
     private Long id;
 
-    private Long restauranteId;
+    private String nomeRestaurante;
 
-    private Long clienteId;
+    private String emailCliente;
 
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHoraReserva;
 
     private Integer quantidadePessoas;
@@ -21,20 +24,20 @@ public class ReservaDTO {
         this.id = id;
     }
 
-    public Long getRestauranteId() {
-        return restauranteId;
+    public String getNomeRestaurante() {
+        return nomeRestaurante;
     }
 
-    public void setRestauranteId(Long restauranteId) {
-        this.restauranteId = restauranteId;
+    public void setNomeRestaurante(String nomeRestaurante) {
+        this.nomeRestaurante = nomeRestaurante;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public String getEmailCliente() {
+        return emailCliente;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
     }
 
     public LocalDateTime getDataHoraReserva() {

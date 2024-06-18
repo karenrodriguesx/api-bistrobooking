@@ -31,6 +31,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
                 r.quantidadePessoas,
                 r.dataHoraReserva,
                 cliente.nome,
+                cliente.email,
                 cliente.telefone,
                 restaurante.nome,
                 restaurante.telefone

@@ -20,9 +20,9 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public Optional<EnderecoDTO> buscarPorId(Long id) {
-        return Optional.ofNullable(repository.buscarPorId(id).orElseThrow(
-                () -> new IllegalArgumentException("Endereço não encontrado!")));
+    public EnderecoDTO buscarPorId(Long id) {
+        return repository.buscarPorId(id).orElseThrow(
+                () -> new IllegalArgumentException("Endereço não encontrado!"));
     }
 
     @Override

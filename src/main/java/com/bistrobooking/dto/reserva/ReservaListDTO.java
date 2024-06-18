@@ -11,6 +11,8 @@ public class ReservaListDTO {
 
     private String nomeCliente;
 
+    private String emailCliente;
+
     private String telefoneCliente;
 
     private String nomeRestaurante;
@@ -20,11 +22,12 @@ public class ReservaListDTO {
     public ReservaListDTO() {
     }
 
-    public ReservaListDTO(Long id, Integer quantidadePessoas, LocalDateTime dataReserva, String nomeCliente, String telefoneCliente, String nomeRestaurante, String telefoneRestaurante) {
+    public ReservaListDTO(Long id, Integer quantidadePessoas, LocalDateTime dataReserva, String nomeCliente, String emailCliente, String telefoneCliente, String nomeRestaurante, String telefoneRestaurante) {
         this.id = id;
         this.quantidadePessoas = quantidadePessoas;
         this.dataReserva = dataReserva;
         this.nomeCliente = nomeCliente;
+        this.emailCliente = emailCliente;
         this.telefoneCliente = telefoneCliente;
         this.nomeRestaurante = nomeRestaurante;
         this.telefoneRestaurante = telefoneRestaurante;
@@ -60,6 +63,14 @@ public class ReservaListDTO {
 
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
+    }
+
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
     }
 
     public String getTelefoneCliente() {

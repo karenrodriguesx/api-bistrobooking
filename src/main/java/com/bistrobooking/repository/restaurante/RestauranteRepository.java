@@ -35,7 +35,6 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
                 r.tipoCulinaria
            ) FROM Restaurante as r
            WHERE r.excluido IS NULL
-           AND r.id = :id
     """)
     Page<RestauranteDTO> listar(Pageable pageable);
 
@@ -52,4 +51,6 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
            AND reserva.id = :idReserva
     """)
     Optional<RestauranteDTO> buscarPorIdReserva(Long idReserva);
+
+    Optional<Restaurante> findByNome(String nome);
 }
