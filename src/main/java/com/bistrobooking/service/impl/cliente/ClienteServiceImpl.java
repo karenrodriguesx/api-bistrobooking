@@ -43,13 +43,19 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public ClienteDTO atualizar(Long id, ClienteDTO form) {
-        Cliente cliente = new Cliente();
-        cliente.setId(id);
-        cliente.setNome(form.getNome());
-        cliente.setEmail(form.getEmail());
-        cliente.setTelefone(form.getTelefone());
+        Cliente cliente = repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Cliente não encontrado!"));
 
-        repository.save(cliente);
+        if (cliente.getExcluido() == null) {
+            cliente.setId(form.getId());
+            cliente.setNome(form.getNome());
+            cliente.setEmail(form.getEmail());
+            cliente.setTelefone(form.getTelefone());
+
+            repository.save(cliente);
+        } else {
+            throw new IllegalArgumentException("Cliente não encontrado!");
+        }
 
         return form;
     }

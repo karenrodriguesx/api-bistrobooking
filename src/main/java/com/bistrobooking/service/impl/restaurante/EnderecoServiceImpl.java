@@ -47,7 +47,9 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public EnderecoDTO atualizar(Long id, EnderecoDTO form) {
-        Endereco endereco = new Endereco();
+        Endereco endereco = repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Endereço não encontrado!"));
+
         endereco.setId(id);
         endereco.setCep(form.getCep());
         endereco.setLogradouro(form.getLogradouro());

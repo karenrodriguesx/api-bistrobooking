@@ -69,24 +69,30 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     @Override
     public RestauranteDTO atualizar(Long id, RestauranteDTO form) {
-        Restaurante restaurante = new Restaurante();
-        restaurante.setId(id);
-        restaurante.setNome(form.getNome());
-        restaurante.setDescricao(form.getDescricao());
-        restaurante.setTelefone(form.getTelefone());
-        restaurante.setTipoCulinaria(form.getTipoCulinaria());
+        Restaurante restaurante = repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Restaurante não encontrado!"));
 
-        Long enderecoId = form.getEndereco().getId();
+        if (restaurante.getExcluido() == null) {
+            restaurante.setId(form.getId());
+            restaurante.setNome(form.getNome());
+            restaurante.setDescricao(form.getDescricao());
+            restaurante.setTelefone(form.getTelefone());
+            restaurante.setTipoCulinaria(form.getTipoCulinaria());
 
-        if (enderecoId != null) {
-            Endereco endereco = enderecoRepository.findById(enderecoId)
-                    .orElseThrow(() -> new IllegalArgumentException("Endereço não encontrado"));
-            restaurante.setEndereco(endereco);
+            Long enderecoId = form.getEndereco().getId();
+
+            if (enderecoId != null) {
+                Endereco endereco = enderecoRepository.findById(enderecoId)
+                        .orElseThrow(() -> new IllegalArgumentException("Endereço não encontrado"));
+                restaurante.setEndereco(endereco);
+            } else {
+                enderecoServiceImpl.salvar(form.getEndereco());
+            }
+
+            repository.save(restaurante);
         } else {
-            enderecoServiceImpl.salvar(form.getEndereco());
+            throw new IllegalArgumentException("Cliente não encontrado!");
         }
-
-        repository.save(restaurante);
 
         return form;
     }

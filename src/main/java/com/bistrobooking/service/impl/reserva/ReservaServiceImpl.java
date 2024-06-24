@@ -76,12 +76,18 @@ public class ReservaServiceImpl implements ReservaService {
 
     @Override
     public ReservaDTO atualizar(Long id, ReservaDTO form) {
-        Reserva reserva = new Reserva();
-        reserva.setId(id);
-        reserva.setDataHoraReserva(form.getDataHoraReserva());
-        reserva.setQuantidadePessoas(form.getQuantidadePessoas());
+        Reserva reserva = repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Reserva não encontrada!"));
 
-        repository.save(reserva);
+        if (reserva.getExcluido() == null) {
+            reserva.setId(form.getId());
+            reserva.setDataHoraReserva(form.getDataHoraReserva());
+            reserva.setQuantidadePessoas(form.getQuantidadePessoas());
+
+            repository.save(reserva);
+        } else {
+            throw new IllegalArgumentException("Reserva não encontrada!");
+        }
 
         return form;
     }
