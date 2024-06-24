@@ -1,19 +1,15 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:bistrobooking
+    url: jdbc:postgresql://localhost:5434/dev_bistrobooking
     username: dev
-    password:
+    password: 0a58B7#AsY*9
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
-    open-in-view: false
     hibernate:
-      ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: false
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 8081

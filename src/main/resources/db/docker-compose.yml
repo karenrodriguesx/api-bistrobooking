@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres
+    container_name: dev_bistrobooking
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: 0a58B7#AsY*9
+    ports:
+      - "5434:5432"
+    volumes:
+      - dev_bistrobooking_data:/var/lib/postgresql/data
+
+volumes:
+  dev_bistrobooking_data:
