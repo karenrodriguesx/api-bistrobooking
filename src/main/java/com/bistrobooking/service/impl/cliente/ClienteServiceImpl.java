@@ -33,10 +33,14 @@ public class ClienteServiceImpl implements ClienteService {
     public ClienteDTO salvar(ClienteDTO form) {
         Cliente cliente = new Cliente();
         cliente.setNome(form.getNome());
-        cliente.setEmail(form.getEmail());
+        cliente.setEmail(form.getEmail().toLowerCase());
         cliente.setTelefone(form.getTelefone());
 
-        repository.save(cliente);
+        Cliente clienteEmail = repository.findByEmail(form.getEmail().toLowerCase()).orElse(null);
+
+        if (clienteEmail != null) {
+            throw new IllegalArgumentException("E-mail já cadastrado!");
+        } else repository.save(cliente);
 
         return form;
     }
@@ -49,7 +53,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (cliente.getExcluido() == null) {
             cliente.setId(form.getId());
             cliente.setNome(form.getNome());
-            cliente.setEmail(form.getEmail());
+            cliente.setEmail(form.getEmail().toLowerCase());
             cliente.setTelefone(form.getTelefone());
 
             repository.save(cliente);

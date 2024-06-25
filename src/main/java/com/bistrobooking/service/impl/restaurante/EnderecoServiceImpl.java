@@ -40,7 +40,9 @@ public class EnderecoServiceImpl implements EnderecoService {
         endereco.setLocalidade(form.getLocalidade());
         endereco.setUf(form.getUf());
 
-        repository.save(endereco);
+        Endereco enderecoSalvo = repository.save(endereco);
+
+        endereco.setId(enderecoSalvo.getId());
 
         return form;
     }

@@ -1,6 +1,5 @@
 package com.bistrobooking.repository.reserva;
 
-import com.bistrobooking.dto.reserva.ReservaDTO;
 import com.bistrobooking.dto.reserva.ReservaListDTO;
 import com.bistrobooking.dto.reserva.ReservaSmallDTO;
 import com.bistrobooking.entity.Reserva;

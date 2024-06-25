@@ -10,7 +10,7 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (unique = true)
+    @Column
     private String nome;
 
     @Column(columnDefinition = "TEXT")

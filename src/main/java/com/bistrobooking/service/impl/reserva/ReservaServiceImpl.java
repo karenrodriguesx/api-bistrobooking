@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
@@ -61,11 +62,12 @@ public class ReservaServiceImpl implements ReservaService {
         reserva.setDataHoraReserva(form.getDataHoraReserva());
         reserva.setQuantidadePessoas(form.getQuantidadePessoas());
 
-        Restaurante restaurante = restauranteRepository.findByNome(form.getNomeRestaurante())
+        Restaurante restaurante = restauranteRepository.findById(form.getIdRestaurante())
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado!"));
         reserva.setRestaurante(restaurante);
 
-        Cliente cliente = clienteRepository.findByEmail(form.getEmailCliente())
+        String emailPadronizado = form.getEmailCliente().toLowerCase();
+        Cliente cliente = clienteRepository.findByEmail(emailPadronizado)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado!"));
         reserva.setCliente(cliente);
 

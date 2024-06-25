@@ -55,12 +55,14 @@ public class RestauranteServiceImpl implements RestauranteService {
     @Override
     public RestauranteDTO salvar(RestauranteDTO form) {
         Restaurante restaurante = new Restaurante();
-        restaurante.setNome(form.getNome());
+        restaurante.setNome(form.getNome().toUpperCase());
         restaurante.setDescricao(form.getDescricao());
         restaurante.setTelefone(form.getTelefone());
         restaurante.setTipoCulinaria(form.getTipoCulinaria());
 
-        enderecoServiceImpl.salvar(form.getEndereco());
+        EnderecoDTO enderecoDTO = enderecoServiceImpl.salvar(form.getEndereco());
+        Endereco endereco = enderecoRepository.findById(enderecoDTO.getId()).orElse(null);
+        restaurante.setEndereco(endereco);
 
         repository.save(restaurante);
 
@@ -74,7 +76,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 
         if (restaurante.getExcluido() == null) {
             restaurante.setId(form.getId());
-            restaurante.setNome(form.getNome());
+            restaurante.setNome(form.getNome().toUpperCase());
             restaurante.setDescricao(form.getDescricao());
             restaurante.setTelefone(form.getTelefone());
             restaurante.setTipoCulinaria(form.getTipoCulinaria());
@@ -91,7 +93,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 
             repository.save(restaurante);
         } else {
-            throw new IllegalArgumentException("Cliente não encontrado!");
+            throw new IllegalArgumentException("Restaurante não encontrado!");
         }
 
         return form;

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class ReservaDTO {
     private Long id;
 
-    private String nomeRestaurante;
+    private Long idRestaurante;
 
     private String emailCliente;
 
@@ -24,12 +24,12 @@ public class ReservaDTO {
         this.id = id;
     }
 
-    public String getNomeRestaurante() {
-        return nomeRestaurante;
+    public Long getIdRestaurante() {
+        return idRestaurante;
     }
 
-    public void setNomeRestaurante(String nomeRestaurante) {
-        this.nomeRestaurante = nomeRestaurante;
+    public void setIdRestaurante(Long idRestaurante) {
+        this.idRestaurante = idRestaurante;
     }
 
     public String getEmailCliente() {
