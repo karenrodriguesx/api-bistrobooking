@@ -1,1 +1,1 @@
-web: java -jar build/bistrobooking.jar
+web: java -jar target/bistrobooking.jar
