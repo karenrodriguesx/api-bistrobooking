@@ -1,16 +1,25 @@
 package com.bistrobooking.dto.restaurante;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
 public class RestauranteDTO {
     private Long id;
 
+    @NotBlank (message = "O campo nome do restaurante é obrigatório")
     private String nome;
 
+    @Schema(type = "string", example = "Servimos o melhor hambúrguer")
     private String descricao;
 
+    @Valid
     private EnderecoDTO endereco;
 
+    @NotBlank (message = "O campo telefone é obrigatório")
     private String telefone;
 
+    @Schema(type = "string", example = "Variado")
     private String tipoCulinaria;
 
     public RestauranteDTO() {

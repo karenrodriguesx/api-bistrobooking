@@ -75,7 +75,7 @@ public class RestauranteServiceImpl implements RestauranteService {
                 () -> new IllegalArgumentException("Restaurante não encontrado!"));
 
         if (restaurante.getExcluido() == null) {
-            restaurante.setId(form.getId());
+            restaurante.setId(id);
             restaurante.setNome(form.getNome().toUpperCase());
             restaurante.setDescricao(form.getDescricao());
             restaurante.setTelefone(form.getTelefone());

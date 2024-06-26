@@ -1,12 +1,20 @@
 package com.bistrobooking.dto.cliente;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+
 public class ClienteDTO {
     private Long id;
 
+    @Schema(type = "string", example = "Cliente")
+    @NotBlank(message = "O campo nome do cliente é obrigatório")
     private String nome;
 
+    @Schema(type = "string", example = "cliente@ahkc.com")
+    @NotBlank (message = "O campo e-mail do cliente é obrigatório")
     private String email;
 
+    @Schema(type = "string", example = "99 99999-9999")
     private String telefone;
 
     public ClienteDTO() {

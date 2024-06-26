@@ -1,18 +1,31 @@
 package com.bistrobooking.dto.restaurante;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+
 public class EnderecoDTO {
     private Long id;
 
+    @Schema(type = "string", example = "77777777")
+    @NotBlank(message = "O campo CEP é obrigatório")
     private String cep;
 
+    @Schema(type = "string", example = "Rua ABC")
+    @NotBlank (message = "O campo logradouro é obrigatório")
     private String logradouro;
 
+    @Schema(type = "string", example = "Ao lado do shopping ABC")
     private String complemento;
 
+    @Schema(type = "string", example = "Centro")
+    @NotBlank (message = "O campo bairro é obrigatório")
     private String bairro;
 
+    @Schema(type = "string", example = "São Paulo")
     private String localidade;
 
+    @Schema(type = "string", example = "SP")
+    @NotBlank (message = "O campo UF é obrigatório")
     private String uf;
 
     public EnderecoDTO() {

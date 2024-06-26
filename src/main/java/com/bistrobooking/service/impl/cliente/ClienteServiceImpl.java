@@ -51,7 +51,7 @@ public class ClienteServiceImpl implements ClienteService {
                 () -> new IllegalArgumentException("Cliente não encontrado!"));
 
         if (cliente.getExcluido() == null) {
-            cliente.setId(form.getId());
+            cliente.setId(id);
             cliente.setNome(form.getNome());
             cliente.setEmail(form.getEmail().toLowerCase());
             cliente.setTelefone(form.getTelefone());
