@@ -42,7 +42,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         Endereco enderecoSalvo = repository.save(endereco);
 
-        endereco.setId(enderecoSalvo.getId());
+        form.setId(enderecoSalvo.getId());
 
         return form;
     }
