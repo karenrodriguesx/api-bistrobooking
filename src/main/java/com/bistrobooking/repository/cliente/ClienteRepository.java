@@ -48,5 +48,10 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     """)
     Optional<ClienteDTO> buscarPorIdReserva(Long idReserva);
 
-    Optional<Cliente> findByEmail(String email);
+    @Query("""
+        SELECT cliente
+        FROM Cliente as cliente
+        WHERE cliente.excluido IS NULL
+    """)
+    Optional<Cliente> findByEmail (String email);
 }
