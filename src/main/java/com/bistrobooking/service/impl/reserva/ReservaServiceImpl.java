@@ -5,12 +5,14 @@ import com.bistrobooking.dto.reserva.ReservaDTO;
 import com.bistrobooking.dto.reserva.ReservaFetchDTO;
 import com.bistrobooking.dto.reserva.ReservaListDTO;
 import com.bistrobooking.dto.reserva.ReservaSmallDTO;
+import com.bistrobooking.dto.restaurante.EnderecoDTO;
 import com.bistrobooking.dto.restaurante.RestauranteDTO;
 import com.bistrobooking.entity.Cliente;
 import com.bistrobooking.entity.Reserva;
 import com.bistrobooking.entity.Restaurante;
 import com.bistrobooking.repository.cliente.ClienteRepository;
 import com.bistrobooking.repository.reserva.ReservaRepository;
+import com.bistrobooking.repository.restaurante.EnderecoRepository;
 import com.bistrobooking.repository.restaurante.RestauranteRepository;
 import com.bistrobooking.service.base.reserva.ReservaService;
 import org.springframework.data.domain.Page;
@@ -26,11 +28,13 @@ public class ReservaServiceImpl implements ReservaService {
     private final ReservaRepository repository;
     private final RestauranteRepository restauranteRepository;
     private final ClienteRepository clienteRepository;
+    private final EnderecoRepository enderecoRepository;
 
-    public ReservaServiceImpl(ReservaRepository repository, RestauranteRepository restauranteRepository, ClienteRepository clienteRepository) {
+    public ReservaServiceImpl(ReservaRepository repository, RestauranteRepository restauranteRepository, ClienteRepository clienteRepository, EnderecoRepository enderecoRepository) {
         this.repository = repository;
         this.restauranteRepository = restauranteRepository;
         this.clienteRepository = clienteRepository;
+        this.enderecoRepository = enderecoRepository;
     }
 
     @Override
@@ -42,6 +46,8 @@ public class ReservaServiceImpl implements ReservaService {
 
         RestauranteDTO restaurante = restauranteRepository.buscarPorIdReserva(id)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado!"));
+        EnderecoDTO enderecoDTO = enderecoRepository.buscarPorIdRestaurante(restaurante.getId()).orElse(null);
+        restaurante.setEndereco(enderecoDTO);
         reservaFetch.setRestaurante(restaurante);
 
         ClienteDTO cliente = clienteRepository.buscarPorIdReserva(id)
