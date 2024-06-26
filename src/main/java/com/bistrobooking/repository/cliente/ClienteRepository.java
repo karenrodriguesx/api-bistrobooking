@@ -52,6 +52,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
         SELECT cliente
         FROM Cliente as cliente
         WHERE cliente.excluido IS NULL
+        AND cliente.email = :email
     """)
     Optional<Cliente> findByEmail (String email);
 }
