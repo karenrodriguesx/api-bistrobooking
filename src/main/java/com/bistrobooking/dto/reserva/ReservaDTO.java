@@ -1,6 +1,7 @@
 package com.bistrobooking.dto.reserva;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class ReservaDTO {
     private String emailCliente;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    @Schema(type = "string", pattern = "dd/MM/yyyy HH:mm:ss", example = "25/06/2024 18:00:00")
     private LocalDateTime dataHoraReserva;
 
     private Integer quantidadePessoas;

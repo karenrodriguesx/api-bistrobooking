@@ -19,7 +19,6 @@ public class Reserva {
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 
-    @Schema(type = "string", pattern = "dd/MM/yyyy HH:mm:ss", example = "25/06/2024 18:00:00")
     @Column(name = "dth_reserva")
     private LocalDateTime dataHoraReserva;
 
