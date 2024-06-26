@@ -4,8 +4,6 @@ import com.bistrobooking.dto.cliente.ClienteDTO;
 import com.bistrobooking.dto.restaurante.RestauranteDTO;
 
 public class ReservaFetchDTO {
-    private Long id;
-
     private ReservaSmallDTO reserva;
 
     private ClienteDTO cliente;
@@ -15,19 +13,10 @@ public class ReservaFetchDTO {
     public ReservaFetchDTO() {
     }
 
-    public ReservaFetchDTO(Long id, ReservaSmallDTO reserva, ClienteDTO cliente, RestauranteDTO restaurante) {
-        this.id = id;
+    public ReservaFetchDTO(ReservaSmallDTO reserva, ClienteDTO cliente, RestauranteDTO restaurante) {
         this.reserva = reserva;
         this.cliente = cliente;
         this.restaurante = restaurante;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public ClienteDTO getCliente() {
